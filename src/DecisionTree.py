@@ -5,10 +5,10 @@ from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, r
 import matplotlib.pyplot as plt
 from sklearn import tree
 
-dataset = pd.read_csv("IRIS_dataset.csv")
+dataset = pd.read_csv("heart_disease.csv")
 
-X = dataset.drop('species', axis=1)
-y = dataset['species']
+X = dataset.drop('target', axis=1)
+y = dataset['target']
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
@@ -35,6 +35,8 @@ print('Recall:', recall)
 print('Specificity:', specificity)
 print('F1 Score:', f1)
 
+class_names = y.unique().astype(str)
+
 plt.figure(figsize=(10, 8))
-tree.plot_tree(dtc, feature_names=X.columns, class_names=y.unique(), filled=True)
+tree.plot_tree(dtc, feature_names=X.columns, class_names=class_names, filled=True)
 plt.show()

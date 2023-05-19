@@ -5,10 +5,10 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, f1_score
 from sklearn.preprocessing import LabelEncoder
 
-dataset = pd.read_csv("IRIS_dataset.csv")
+dataset = pd.read_csv("heart_disease.csv")
 
-X = dataset.drop('species', axis=1)
-y = dataset['species']
+X = dataset.drop('target', axis=1)
+y = dataset['target']
 
 label_encoder = LabelEncoder()
 y_encoded = label_encoder.fit_transform(y)
@@ -38,8 +38,9 @@ print('Recall:', recall)
 print('Specificity:', specificity)
 print('F1-score:', f1)
 
-plt.scatter(X['sepal_length'], X['sepal_width'], c=y_encoded, cmap='viridis')
-plt.xlabel('Sepal Length')
-plt.ylabel('Sepal Width')
-plt.title('Iris Dataset - Sepal Length vs. Sepal Width')
+# Scatter plot
+plt.scatter(X_test['age'], X_test['chol'], c=y_test, cmap='viridis')
+plt.xlabel('Age')
+plt.ylabel('Cholesterol')
+plt.title('Scatter Plot of Age vs. Cholesterol with Target Labels')
 plt.show()
